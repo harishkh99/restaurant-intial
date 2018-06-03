@@ -1,26 +1,16 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import theme from './theme/theme';
-import store, { history } from './store';
-import App from './containers/app';
-
-import 'sanitize.css/sanitize.css';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
+import App from './App';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from './Theme';
+import registerServiceWorker from './registerServiceWorker';
 
-const target = document.querySelector('#root');
-
-render(
-  <MuiThemeProvider theme={theme}>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <div>
-          <App />
-        </div>
-      </ConnectedRouter>
-    </Provider>
-  </MuiThemeProvider>,
-  target
-);
+ReactDOM.render(
+    <MuiThemeProvider theme={theme}>
+        <Router>
+            <App />
+        </Router>
+    </MuiThemeProvider>, document.getElementById('root'));
+registerServiceWorker();
